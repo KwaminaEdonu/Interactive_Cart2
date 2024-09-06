@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Load a basic Webmap - 4.28</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+		background-color: black;
+      }
+	
+		
+	#main1 {
+	float: left;
+	right:0;
+    padding-top: %;
+    height: 83.5%;
+    width:50%;
+  }	
+		
+	#main2{
+	float:right;
+	right: 0;
+    padding-top: %;
+    height: 83.5%;
+    width:50%;
+	
+	
+  }		
+	#viewDiv {
+	float: left;
+	right: 0;
+    padding: 0;
+    height: 96.5%;
+    width:99.5%;
+	margin-top: 0%;
+	padding: ;
+	margin-right:1%;
+  }
+		
+	 #viewDiv2 {
+        float: left;
+        right: 0;
+        padding: 1;
+        margin-left: 1.5%;
+		margin-top: 0%;
+        height: 46.3%;
+        width: 48.8%;
+		
+		}
+		
+	#viewDiv3 {
+        float: right;
+        right: 0%;
+        padding: 1;
+		margin-right: 0%;
+		margin-top: %;
+        height: 46.3%;
+        width: 48.5%;
+		}
+	
+		#viewDiv4 {
+        float: left;
+        right: 0;
+        padding: 1;
+		margin-top: %;
+		margin-left:1.5%;
+      	height: 46.3%;
+        width: 49%;
+		}
+		
+	 #legendListDiv{
+	  float: right;	 
+	  padding: 1;
+	  margin-top: 0%;
+	  margin-right: %;
+      height: 45.9%;
+      width: 49%; 
+	  background-color: black;
+		}
+		
+    #titleDiv{
+    float: left;
+    height: 30px;
+    width: 99%;
+	margin-right:1%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-right: 0.5%;
+	padding-left: ;
+    font-weight: 400;
+    font-size: 20px
+    }
+	
+	#titleDiv2{
+    float: left;
+    height: 30px;
+    width: 48%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-right: 1%;
+    font-weight: 400;
+    font-size: 20px;
+	margin: 0%;
+	margin-left: 1.5%;
+    }	
+		
+	#titleDiv3{
+    float: right;
+    height: 30px;
+    width: 48%;		
+    background-color:black;
+    color: white;
+    text-align: center;
+    padding-right: 0%;
+	padding-top: 0%;
+    font-weight: 400;
+    font-size: 20px;
+	margin: 0%;		
+    }
+		
+	#titleDiv4{
+    float: left;
+	margin-top: %;
+	margin-left: 1.5%;
+    height: 30px;
+    width: 48%;		
+    background-color: black;
+    color: white;
+    text-align: center;
+	padding-right: 1%;
+    font-weight: 400;
+    font-size: 20px
+    }
+	
+	#titlelegendListDiv{
+	float: right;
+	margin-top: %;
+    height: 30px;
+    width: 48%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-right: %;
+    font-weight: 400;
+    font-size: 20px;
+	margin-right: 0%;	
+		}
+		
+    #header {
+        width: 100%;
+        background-color: maroon;
+        height: 15%;
+        text-align: center;
+        color: white;
+		display: table;		
+    }
+   h1{
+     text-align: center;
+     color: white;
+	 font-weight:bold;
+	 font-size: 48px
+
+    }
+		
+	h2{
+     text-align: center;
+      color: white; 
+      float: right
+    }
+		
+	 #overviewDiv {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 200px;
+      height: 150px;
+      border: 1px solid black;
+      z-index: 1;
+    }
+		
+		 #extentDiv{
+        border: 2px solid red;
+        position: absolute;
+	
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css"/>
+    <script src="https://js.arcgis.com/4.28/"></script>
+    
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer",
+        "esri/layers/CSVLayer",
+		"esri/widgets/Legend",
+        "esri/widgets/LayerList",
+        "esri/widgets/Expand",
+		 
+		
+      ], function (
+        Map, MapView, FeatureLayer, CSVLayer, Legend, LayerList, Expand,
+      ) {
+        var mymap = new Map({
+          basemap: "streets",
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: mymap,
+          zoom: 5,
+          center: [-1.023194, 7.946527],
+        });
+        
+        var map2 = new Map({
+          basemap: "streets"
+        });
+
+        var view2 = new MapView({
+          container: "viewDiv2",
+          map: map2,
+          zoom: 5,
+          center: [-1.023194, 7.946527],
+          constraints: {
+            rotationEnabled: false
+          }
+        });
+
+		  var map3 = new Map({
+          basemap: "streets"
+        });
+
+        var view3 = new MapView({
+          container: "viewDiv3",
+          map: map3,
+          zoom: 5,
+          center: [-1.023194, 7.946527],
+          constraints: {
+            rotationEnabled: false
+          }
+        });
+		   
+		 var map4 = new Map({
+          basemap: "streets"
+        });
+
+        var view4 = new MapView({
+          container: "viewDiv4",
+          map: map4,
+          zoom: 5,
+          center: [-1.023194, 7.946527],
+          constraints: {
+            rotationEnabled: false
+          }
+        });
+		  
+        var template = {
+          title: "AccidentCases Info",
+          content: "Region: {Region}<br>Fatal: {Fatal}<br>Serious: {Serious}<br>Minor: {Minor}<br>Total: {Total}"
+        };
+
+        var accidentcases = new CSVLayer({
+          url: "https://dl.dropboxusercontent.com/scl/fi/7e9sok0pz0tqcna9rn2a9/Accident_Cases.csv?rlkey=d5jr0ng337yr80l288bx0lv6v&dl=0",
+          copyright: "",
+          popupTemplate: template
+        });
+
+        mymap.add(accidentcases);
+
+        accidentcases.renderer = {
+          type: "simple",
+          symbol: {
+            type: "simple-marker",
+            color: [40, 0, 20, 0.75],
+            size: 12,
+            outline: {
+              width: 0.6,
+              color: "white"
+            }
+          }
+        };
+
+		
+		  var template = {
+          title: "Vehicles Info",
+          content: "Region: {Region}<br>CommercialBus: {CommercialBus}<br>CommercialMiniBus: {CommercialMiniBus}<br>CommercialTruck: {CommercialTruck}<br>Taxi: {Taxi}<br>Others: {Others}<br>TotalCommercial: {TotalCommercial}<br><br>PrivateMiniBus: {PrivateMiniBus}<br>PrivateSaloon: {PrivateSaloon}<br>PrivateSUV/4x4: {PrivateSUV_4x4}<br>PrivateTruck: {PrivateTruck}<br>Government: {Government}<br>TotalPrivate: {TotalPrivate}<br><br>MotorCycle: {MotorCycle}<br>Bicycle: {Bicycle}<br>HandCart: {HandCart}<br>Tricycle: {Tricycle}<br>TotalMotorCycles: {TotalMotorCycles}<br><br>TotalVehicles: {TotalVehicles}"
+        };
+		  
+        var vehicles = new CSVLayer({
+          url: "https://dl.dropboxusercontent.com/scl/fi/qdsn4spes0gshs5iw97ac/Vehicles.csv?rlkey=sb8484oyc3kgsf17pru95v7nd&dl=0",
+			
+          copyright: "",
+          popupTemplate: template
+        });
+
+        map4.add(vehicles);
+		  
+		 vehicles.renderer = {
+          type: "simple",
+          symbol: {
+            type: "simple-marker",
+            color: [38, 150, 0, 0.75],
+            size: 12,
+            outline: {
+              width: 0.6,
+              color: "white"
+				   }
+          }
+        };
+		  
+  
+		  var template = {
+          title: "Injuries Info",
+          content: "Region: {Region}<br>Pedestrians Injured: {PedestriansInjured}<br>Persons Injured: {PersonsInjured}"
+        };
+		  
+		var injuries = new CSVLayer({
+          url: "https://dl.dropboxusercontent.com/scl/fi/4iauu0l1ru8ggbxuwb2n5/Injuries.csv?rlkey=x1tcwpt1kftk6hywtbu33g3a2&dl=0",
+			
+          copyright: "",
+          popupTemplate: template
+        });
+
+        map2.add(injuries);
+		  
+		 injuries.renderer = {
+          type: "simple",
+          symbol: {
+            type: "simple-marker",
+            color: [238,135, 0, 0.75],
+            size: 12,
+            outline: {
+              width: 0.,
+              color: "white"
+				   }
+          }
+        };
+ 
+	  var template = {
+          title: "Deaths Info",
+          content: "Region: {Region}<br>Pedestrians Killed: {PedestriansKilled}<br>Persons Killed: {PersonsKilled}"
+        };
+		  
+		var deaths = new CSVLayer({
+          url: "https://dl.dropboxusercontent.com/scl/fi/fewab307gz1s9l54xds5a/Deaths.csv?rlkey=ombnetpqxu9uyfgc63dwncftd&dl=0",
+			
+          copyright: "",
+          popupTemplate: template
+        });
+
+        map3.add(deaths);
+		  
+		 deaths.renderer = {
+          type: "simple",
+          symbol: {
+            type: "simple-marker",
+            color: [238, 39, 0, 0.75],
+            size: 12,
+            outline: {
+              width: 0.7,
+              color: "white"
+				   }
+          }
+        };
+		 
+				  
+		   const legend = new Legend({ 
+			   view: view 
+				});
+		  
+		  const layerList = new LayerList({
+			view: view,
+			   container: "legendListDiv",
+    			listItemCreatedFunction: function (event) {
+        		const item = event.item;
+        		if (item.layer.type !== "group") {
+            	item.panel = {
+                content: "legend",
+                open: true
+            };
+        }
+    }
+});  
+		  
+		     const legend4 = new Legend({ 
+			   view4: view 
+				});
+		  
+		  const layerList2 = new LayerList({
+			view: view4,
+			   container: "legendListDiv",
+    			listItemCreatedFunction: function (event) {
+        		const item = event.item;
+        		if (item.layer.type !== "group") {
+            	item.panel = {
+                content: "legend",
+                open: true
+            };
+        }
+    }
+});  
+  
+		     const legend2 = new Legend({ 
+			   view2: view 
+				});
+		  
+		  const layerList3 = new LayerList({
+			view: view2,
+			   container: "legendListDiv",
+    			listItemCreatedFunction: function (event) {
+        		const item = event.item;
+        		if (item.layer.type !== "group") {
+            	item.panel = {
+                content: "legend",
+                open: true
+            };
+        }
+    }
+});  
+  
+		  
+		     const legend3= new Legend({ 
+			   view: view 
+				});
+		  
+		  const layerList4 = new LayerList({
+			view: view3,
+			   container: "legendListDiv",
+    			listItemCreatedFunction: function (event) {
+        		const item = event.item;
+        		if (item.layer.type !== "group") {
+            	item.panel = {
+                content: "legend",
+                open: true
+            };
+        }
+    }
+});  
+		  
+		const views = [view, view2, view3, view4];
+        let active;
+
+        const sync = (source) => {
+          if (!active || !active.viewpoint || active !== source) {
+            return;
+          }
+
+          for (const view of views) {
+            if (view !== active) {
+              view.viewpoint = active.viewpoint;
+            }
+          }
+        };
+
+        for (const view of views) {
+          view.watch(["interacting", "animation"], () => {
+            active = view;
+            sync(active);
+          });
+
+          view.watch("viewpoint", () => sync(view));
+			
+			
+        }
+  
+	});
+    </script>
+  </head>
+  <body>
+   <div id="header"><h1>Road Accident Cases in Ghana, First Quarter 2023</h1></div>
+   
+   
+   
+	<div id="main1">
+	<div id="titleDiv">Accident Cases</div>
+	<div id="viewDiv"></div>
+	  </div>
+	
+	<div id="main2">
+		<div id="titleDiv2">Injuries</div>
+ 		<div id="titleDiv3">Deaths</div>
+  		<div id="viewDiv2"></div>
+  		<div id="viewDiv3"></div>	
+  		<div id="titlelegendListDiv">Legend</div>
+   		<div id="titleDiv4">Vehicles</div>
+		<div id="viewDiv4"></div>
+		<div id="legendListDiv"></div>
+		
+		</div>
+	
+  </body>
+</html>
