@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Load a basic Webmap - 4.28</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 95%;
+        width: 100%;
+    background-color: black;
+      }
+  
+    
+  #main1 {
+  float: left;
+  right:0;
+    padding-top: %;
+    height: 86.5%;
+    width:50%;
+  } 
+    
+  #main2{
+  float:right;
+  right: 0;
+    padding-top: %;
+    height: 86.5%;
+    width:50%;
+  
+  
+  }   
+  #viewDiv {
+  float: left;
+  right: 0;
+    padding: 0;
+    height: 96.5%;
+    width:99.5%;
+  margin-top: 0%;
+  padding: ;
+  margin-right:1%;
+  }
+    
+   #viewDiv2 {
+        float: left;
+        right: 0;
+        padding: 1;
+        margin-left: 1.5%;
+    margin-top: 0%;
+        height: 46.3%;
+        width: 48.8%;
+    
+    }
+    
+  #viewDiv3 {
+        float: right;
+        right: 0%;
+        padding: 1;
+    margin-right: 0%;
+    margin-top: %;
+        height: 46.3%;
+        width: 48.5%;
+    }
+  
+    #viewDiv4 {
+    float: left;
+    right: 0;
+    padding: 1;
+    margin-top: %;
+    margin-left:1.5%;
+    height: 46.3%;
+    width: 49%;
+    }
+    
+   #legendListDiv{
+    float: right;  
+    padding: 1;
+    margin-top: 0%;
+    margin-right: %;
+      height: 45.9%;
+      width: 49%; 
+    background-color: black;
+    }
+    
+    #titleDiv{
+    float: left;
+    height: 30px;
+    width: 99%;
+  margin-right:1%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-right: 0.5%;
+  padding-left: ;
+    font-weight: 400;
+    font-size: 20px
+    }
+  
+  #titleDiv2{
+    float: left;
+    height: 30px;
+    width: 48%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-right: 1%;
+    font-weight: 400;
+    font-size: 20px;
+  margin: 0%;
+  margin-left: 1.5%;
+    } 
+    
+  #titleDiv3{
+    float: right;
+    height: 30px;
+    width: 48%;   
+    background-color:black;
+    color: white;
+    text-align: center;
+    padding-right: 0%;
+  padding-top: 0%;
+    font-weight: 400;
+    font-size: 20px;
+  margin: 0%;   
+    }
+    
+  #titleDiv4{
+    float: left;
+  margin-top: %;
+  margin-left: 1.5%;
+    height: 30px;
+    width: 48%;   
+    background-color: black;
+    color: white;
+    text-align: center;
+  padding-right: 1%;
+    font-weight: 400;
+    font-size: 20px
+    }
+  
+  #titlelegendListDiv{
+  float: right;
+  margin-top: %;
+    height: 30px;
+    width: 48%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-right: %;
+    font-weight: 400;
+    font-size: 20px;
+  margin-right: 0%; 
+    }
+    
+    #header {
+        width: 100%;
+        background-color: maroon;
+        height: 10%;
+        text-align: center;
+        color: white;
+    	display: table;   
+    }
+   h1{
+     text-align: center;
+     color: white;
+   font-weight:bold;
+   font-size: 40px
+
+    }
+    
+  h2{
+     text-align: center;
+      color: white; 
+      float: right
+    }
+    
+   #overviewDiv {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 200px;
+      height: 150px;
+      border: 1px solid black;
+      z-index: 1;
+    }
+    
+     #extentDiv{
+        border: 2px solid red;
+        position: absolute;
+  
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css"/>
+    <script src="https://js.arcgis.com/4.28/"></script>
+    
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer",
+        "esri/layers/CSVLayer",
+    	"esri/widgets/Legend",
+        "esri/widgets/LayerList",
+        "esri/widgets/Expand",
+     
+    
+      ], function (
+        Map, MapView, FeatureLayer, CSVLayer, Legend, LayerList, Expand,
+      ) {
+        var mymap = new Map({
+          basemap: "streets",
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: mymap,
+          zoom: 5,
+          center: [-1.023194, 7.946527],
+        });
+        
+        var map2 = new Map({
+          basemap: "streets"
+        });
+
+        var view2 = new MapView({
+          container: "viewDiv2",
+          map: map2,
+          zoom: 5,
+          center: [-1.023194, 7.946527],
+          constraints: {
+            rotationEnabled: false
+          }
+        });
+
+      var map3 = new Map({
+          basemap: "streets"
+        });
+
+        var view3 = new MapView({
+          container: "viewDiv3",
+          map: map3,
+          zoom: 5,
+          center: [-1.023194, 7.946527],
+          constraints: {
+            rotationEnabled: false
+          }
+        });
+       
+     var map4 = new Map({
+          basemap: "streets"
+        });
+
+        var view4 = new MapView({
+          container: "viewDiv4",
+          map: map4,
+          zoom: 5,
+          center: [-1.023194, 7.946527],
+          constraints: {
+            rotationEnabled: false
+          }
+        });
+      
+        var template = {
+          title: "AccidentCases Info",
+          content: "Region: {Region}<br>Fatal: {Fatal}<br>Serious: {Serious}<br>Minor: {Minor}<br>Total: {Total}"
+        };
+
+        var accidentcases = new CSVLayer({
+          url: "https://dl.dropboxusercontent.com/scl/fi/7e9sok0pz0tqcna9rn2a9/Accident_Cases.csv?rlkey=d5jr0ng337yr80l288bx0lv6v&dl=0",
+          copyright: "",
+          popupTemplate: template
+        });
+
+        accidentcases.renderer = {
+          type: "simple",
+          symbol: {
+          type: "simple-marker",
+          color: [40, 0, 20, 0.75],
+          outline: {
+          width: 0.6,
+          color: "white"
+         }
+        },
+
+        visualVariables: [
+        {
+          type: "size",
+          field: "Total",
+          stops: [
+			{ value: 97, size: "10px" },
+            { value: 267, size: "25px" },
+			{ value: 739, size: "40px" },
+			{ value: 2039, size: "50px" },
+            { value: 5633, size: "70px" }
+            ]
+          }
+        ]
+      };
+
+      mymap.add(accidentcases);
+      
+
+    var template = {
+          title: "Injuries2023 Info",
+          content: "Region: {Region}<br>Total: {Total}"
+        };
+      
+    var injuries2023 = new CSVLayer({
+          url: "https://dl.dropboxusercontent.com/scl/fi/gf3xjnq8uvg6zlhey7fub/Injuries2023.csv?rlkey=2h4w62te049pyqziw7t5f1t7k&st=crs6gpm2&dl=0",
+      
+          copyright: "",
+          popupTemplate: template
+        });
+      
+    // Injuries Layer with Proportional Symbol
+        injuries2023.renderer = {
+          type: "simple",
+          symbol: {
+          type: "simple-marker",
+          color: [238, 135, 0, 0.75],
+          outline: {
+          width: 0.6,
+          color: "white"
+        }
+      },
+    visualVariables: [
+        {
+        type: "size",
+        field: "Total", // Attribute to base size on
+        stops: [
+          	{ value: 68, size: "10px" },
+            { value: 244, size: "25px" },
+			{ value: 877, size: "40px" },
+			{ value: 3146, size: "50px" },
+            { value: 4156, size: "70px" }
+        ]
+      }
+    ]
+  };
+
+         map2.add(injuries2023);
+ 
+    var template = {
+          title: "Deaths2023 Info",
+          content: "Region: {Region}<br>Total: {Total}"
+        };
+      
+    var deaths2023 = new CSVLayer({
+          url: "https://dl.dropboxusercontent.com/scl/fi/wand1m09a85p2sdp10jbf/Deaths2023.csv?rlkey=or5uum8j4jno6qtscz5tqlfup&st=juup3kj2&dl=0",
+		
+          copyright: "",
+          popupTemplate: template
+        });
+
+
+// Deaths Layer with Proportional Symbol
+    deaths2023.renderer = {
+      type: "simple",
+      symbol: {
+      type: "simple-marker",
+      color: [238, 39, 0, 0.75],
+      outline: {
+      width: 0.6,
+      color: "white"
+    }
+  },
+  visualVariables: [
+    {
+      type: "size",
+      field: "Total", // Attribute to base size on
+      stops: [
+        {value: 30, size: "10px"},
+        {value: 81, size: "25px"},
+		{value: 196, size: "40px"},
+		{value: 471, size: "50px"},
+        {value: 652, size: "70px"}
+      ]
+    }
+  ]
+};
+        map3.add(deaths2023);
+
+
+        var template = {
+          title: "Vehicles2023 Info",
+          content: "Region: {Region}<br>Total: {Total}"
+        };
+      
+        var vehicles2023 = new CSVLayer({
+          url: "https://dl.dropboxusercontent.com/scl/fi/tehex5pr77kdafaqdfwyv/Accidents2020.csv?rlkey=2j2qksak9riy0eu8aqrpdkehm&st=i5vmlut0&dl=0",
+			
+      
+          copyright: "",
+          popupTemplate: template
+        });
+
+     // Vehicles Layer with Proportional Symbol   
+      vehicles2023.renderer = {
+        type: "simple",
+        symbol: {
+        type: "simple-marker",
+        color: [38, 150, 0, 0.75],
+        outline: {
+        width: 0.6,
+        color: "white"
+        }
+      },
+    visualVariables: [
+        {
+        type: "size",
+        field: "Total", // Attribute to base size on
+        stops: [
+          	{value: 124, size: "10px"},
+        	{value: 375, size: "25px"},
+			{value: 1137, size: "40px"},
+			{value: 3438, size: "50px"},
+        	{value: 10403, size: "70px"}
+        ]
+      }
+    ]
+  };
+      
+    map4.add(vehicles2023);
+          
+       const legend = new Legend({ 
+         view: view 
+        });
+      
+      const layerList = new LayerList({
+      view: view,
+         container: "legendListDiv",
+          listItemCreatedFunction: function (event) {
+            const item = event.item;
+            if (item.layer.type !== "group") {
+              item.panel = {
+                content: "legend",
+                open: true
+            };
+        }
+    }
+});  
+      
+         const legend4 = new Legend({ 
+         view4: view 
+        });
+      
+      const layerList2 = new LayerList({
+      view: view4,
+         container: "legendListDiv",
+          listItemCreatedFunction: function (event) {
+            const item = event.item;
+            if (item.layer.type !== "group") {
+              item.panel = {
+                content: "legend",
+                open: true
+            };
+        }
+    }
+});  
+  
+         const legend2 = new Legend({ 
+         view2: view 
+        });
+      
+      const layerList3 = new LayerList({
+      view: view2,
+         container: "legendListDiv",
+          listItemCreatedFunction: function (event) {
+            const item = event.item;
+            if (item.layer.type !== "group") {
+              item.panel = {
+                content: "legend",
+                open: true
+            };
+        }
+    }
+});  
+  
+      
+         const legend3= new Legend({ 
+         view: view 
+        });
+      
+      const layerList4 = new LayerList({
+      view: view3,
+         container: "legendListDiv",
+          listItemCreatedFunction: function (event) {
+            const item = event.item;
+            if (item.layer.type !== "group") {
+              item.panel = {
+                content: "legend",
+                open: true
+            };
+        }
+    }
+});  
+      
+    const views = [view, view2, view3, view4];
+        let active;
+
+        const sync = (source) => {
+          if (!active || !active.viewpoint || active !== source) {
+            return;
+          }
+
+          for (const view of views) {
+            if (view !== active) {
+              view.viewpoint = active.viewpoint;
+            }
+          }
+        };
+
+        for (const view of views) {
+          view.watch(["interacting", "animation"], () => {
+            active = view;
+            sync(active);
+          });
+
+          view.watch("viewpoint", () => sync(view));
+      
+        }
+  
+  });
+    </script>
+  </head>
+  <body>
+   <div id="header"><h1>Analyzing Road Security on Ghana's Highways: An Interactive<br> Visualization of Road Accident Data - 2023</h1></div>
+   
+   
+  <div id="main1">
+  <div id="titleDiv">Accident Cases</div>
+  <div id="viewDiv"></div>
+    </div>
+  
+  <div id="main2">
+    <div id="titleDiv2">Injuries2023</div>
+    <div id="titleDiv3">Deaths2023</div>
+      <div id="viewDiv2"></div>
+      <div id="viewDiv3"></div> 
+      <div id="titlelegendListDiv">Legend</div>
+      <div id="titleDiv4">Vehicles2023</div>
+    <div id="viewDiv4"></div>
+    <div id="legendListDiv"></div>
+    
+    </div>
+  
+  </body>
+</html>
+
+
